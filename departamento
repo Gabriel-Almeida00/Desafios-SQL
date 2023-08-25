@@ -181,45 +181,20 @@ VALUES
 
 
 
-
-SELECT
-    d.nome AS departamento,
-    dv.nome AS divisao,
-    COALESCE(ROUND(AVG(salario_final), 2), 0) AS media,
-    COALESCE(ROUND(GREATEST(MAX(salario_final), AVG(salario_final)), 2), 0) AS maior
-FROM departamento d
-INNER JOIN divisao dv ON d.cod_dep = dv.cod_dep
-LEFT JOIN (
-    SELECT
-        e.lotacao_div,
-        ev.cod_venc,
-        SUM(v.valor) + COALESCE(SUM(dsc.valor), 0) AS salario_final
-    FROM empregado e
-    INNER JOIN emp_venc ev ON e.matr = ev.matr
-    INNER JOIN vencimento v ON ev.cod_venc = v.cod_venc
-    LEFT JOIN emp_desc ed ON e.matr = ed.matr
-    LEFT JOIN desconto dsc ON ed.cod_desc = dsc.cod_desc
-    WHERE e.lotacao_div IS NOT NULL 
-    GROUP BY e.lotacao_div, ev.cod_venc
-) salarios ON dv.cod_divisao = salarios.lotacao_div
-GROUP BY d.nome, dv.nome
-ORDER BY media DESC;
-
-
 WITH brutes AS (
     SELECT
-        empregado.matr,
-        empregado.nome AS "employee",
-        empregado.lotacao_div,
-         vencimento.nome AS "venc_name",
-        vencimento.valor AS "venc_value",
-        SUM(vencimento.valor) OVER (PARTITION BY empregado.matr) AS "brute"
-    FROM
-        empregado
-        INNER JOIN emp_venc ON emp_venc.matr = empregado.matr
-        INNER JOIN vencimento ON vencimento.cod_venc = emp_venc.cod_venc
-    ORDER BY
-        empregado.matr ASC
+    empregado.matr,
+    empregado.nome AS "employee",
+    empregado.lotacao_div,
+    COALESCE(vencimento.nome, '') AS "venc_name",
+    COALESCE(vencimento.valor, 0) AS "venc_value",
+    COALESCE(SUM(vencimento.valor) OVER (PARTITION BY empregado.matr), 0) AS "brute"
+FROM
+    empregado
+    LEFT JOIN emp_venc ON emp_venc.matr = empregado.matr
+    LEFT JOIN vencimento ON vencimento.cod_venc = emp_venc.cod_venc
+ORDER BY
+    empregado.matr ASC
 ),
 discounts AS (
     SELECT
@@ -271,6 +246,7 @@ FROM
     ) S
 ORDER BY
     S.avg DESC;
+	
     
     
 
