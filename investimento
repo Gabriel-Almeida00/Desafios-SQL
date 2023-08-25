@@ -1,0 +1,30 @@
+SELECT
+    c.name,
+    c.investment,
+    MIN(o.month) AS month_of_payback,
+    MIN(o.cumulative_profit) - c.investment AS return
+FROM
+    clients c
+JOIN (
+    SELECT
+        o1.client_id,
+        o1.month,
+        SUM(o2.profit) AS cumulative_profit
+    FROM
+        operations o1
+    JOIN
+        operations o2 ON o1.client_id = o2.client_id AND o1.month >= o2.month
+    GROUP BY
+        o1.client_id, o1.month
+) o ON c.id = o.client_id
+WHERE
+    c.investment <= o.cumulative_profit
+GROUP BY
+    c.id, c.name, c.investment
+ORDER BY
+    return DESC;
+
+
+
+
+
