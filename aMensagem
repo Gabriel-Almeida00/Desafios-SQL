@@ -1,0 +1,23 @@
+WITH TemperatureChanges AS (
+    SELECT
+        temperature,
+        mark,
+        ROW_NUMBER() OVER (PARTITION BY temperature, mark ORDER BY id) - ROW_NUMBER() OVER (PARTITION BY temperature ORDER BY id) AS grp
+    FROM
+        records
+)
+
+SELECT
+    temperature,
+    COUNT(*) AS number_of_records
+FROM
+    TemperatureChanges
+GROUP BY
+    temperature,
+    grp
+ORDER BY
+    MIN(mark);
+
+
+
+
