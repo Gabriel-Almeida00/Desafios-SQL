@@ -43,6 +43,38 @@ Aqui estão os desafios de SQL e os links para cada um. Você pode adicionar sua
 - Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2989)
 - Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/departamento
 
+  ### Desafio 7
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2737)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/advogados
+
+  
+### Desafio 8
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2995)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/aMensagem
+
+### Desafio 9
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2988)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/campeonato
+
+### Desafio 10
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2992)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/divis%C3%A3oSalarios
+
+### Desafio 11
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2997)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/pagamentoEmpregados
+
+### Desafio 12
+
+- Descrição do Desafio: [Link](https://www.beecrowd.com.br/judge/en/problems/view/2991)
+- Minha Solução: https://github.com/Gabriel-Almeida00/Desafios-SQL/blob/main/estatisticaDepartamento
+
+
 
 
 # Habilidades Necessárias em SQL
